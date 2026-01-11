@@ -24,6 +24,7 @@ const saldoSpan = document.getElementById("saldo");
 const mensaje = document.getElementById("mensaje");
 const sonidoGiro = document.getElementById("sonidoGiro");
 const sonidoPremio = document.getElementById("sonidoPremio");
+const sonidoIngreso = document.getElementById("sonidoIngreso");
 
 document.getElementById("girar").onclick = () => {
 
@@ -65,6 +66,7 @@ document.getElementById("ingresar").onclick = () => {
     if (!isNaN(cantidad) && cantidad > 0) {
         saldo += cantidad;
         saldoSpan.innerText = saldo;
+        if (sonidoActivo) sonidoIngreso.play();
     }
 };
 
@@ -72,6 +74,7 @@ document.getElementById("retirar").onclick = () => {
     alert("Has retirado " + saldo + " monedas.\n¡Gracias por jugar!");
     saldo = 0;
     saldoSpan.innerText = saldo;
+    if (sonidoActivo) sonidoIngreso.play();
 };
 
 document.getElementById("sonidoBtn").onclick = () => {
