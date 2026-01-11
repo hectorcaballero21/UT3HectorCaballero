@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FruitSlots</title>
+    <link rel="stylesheet" href="tragaperras.css">
+</head>
+<body>
+
+    <div class="fondo"></div>
+
+    <div class="contenedor">
+
+        <img src="img/logo.png" class="logo" alt="Logo FruitSlots">
+
+        <h1 class="titulo">FruitSlots</h1>
+
+        <div class="panel-superior">
+            <div>
+                <label>Idioma:</label>
+                <select id="idioma">
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Sonido:</label>
+                <button id="sonidoBtn">🔊 ON</button>
+            </div>
+
+            <div id="fechaHora"></div>
+        </div>
+
+        <div class="slots">
+            <img id="slot1" src="img/cereza.png" class="slot">
+            <img id="slot2" src="img/cereza.png" class="slot">
+            <img id="slot3" src="img/cereza.png" class="slot">
+        </div>
+
+        <div class="saldo">Saldo: <span id="saldo">100</span> monedas</div>
+
+        <div id="mensaje" class="mensaje"></div>
+
+        <div class="botones">
+            <button id="girar">🎰 Girar (10 monedas)</button>
+            <button id="ingresar">➕ Ingresar saldo</button>
+            <button id="retirar">💰 Retirar saldo</button>
+        </div>
+
+        <div class="tabla">
+            <h2>Tabla de Pagos</h2>
+            <p>3 CEREZAS → 20 monedas</p>
+            <p>3 DIAMANTES → 100 monedas</p>
+            <p>3 FRESAS → 30 monedas</p>
+            <p>3 PLÁTANOS → 50 monedas</p>
+            <p>3 UVAS → 10 monedas</p>
+        </div>
+
+    </div>
+
+    <audio id="sonidoGiro" src="audio/giro.mp3"></audio>
+    <audio id="sonidoPremio" src="audio/premio.mp3"></audio>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
