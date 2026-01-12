@@ -38,12 +38,14 @@ const dia = document.getElementById("dia");
 const fre = document.getElementById("fre");
 const pla = document.getElementById("pla");
 const uva = document.getElementById("uva");
+let lng = "es";
 
 idioma.addEventListener("change", function() {
     console.log("Idioma seleccionado:", this.value);
     let i = idioma.options[idioma.selectedIndex].text;
         i = idioma.value;
-        console.log(i);
+        lng = i;
+        console.log(lng);
         if(i=="en") {
             idi.innerText ="Language";
             s.innerText ="Sound";
@@ -52,7 +54,7 @@ idioma.addEventListener("change", function() {
             divSaldo.childNodes[2].textContent = " Coins";
             girar.innerText ="Spin (10 Coins)";
             ingresar.innerText ="+ Add Coins";
-            retirar.innerText ="- Take Coins";
+            retirar.innerText ="- Withdraw Coins";
             cer.innerText ="3 CHERRIES → 20 Coins";
             dia.innerText ="3 DIAMONDS → 100 Coins";
             fre.innerText ="3 STRAWBERRIES → 30 Coins";
@@ -103,16 +105,31 @@ document.getElementById("girar").onclick = () => {
         saldo += premio;
         saldoSpan.innerText = saldo;
 
-        mensaje.innerText = "¡Ganaste " + premio + " monedas!";
+        if(lng=="es") {
+            mensaje.innerText = "¡Ganaste " + premio + " monedas!";
+        } else if(lng=="en") {
+            mensaje.innerText = "You Win " + premio + " coins!";
+        }
+        
         if (sonidoActivo) sonidoPremio.play();
 
     } else {
-        mensaje.innerText = "Sin premio...";
+        if(lng=="es") {
+            mensaje.innerText = "Sin premio...";
+        } else if(lng=="en") {
+            mensaje.innerText = "No prize...";
+        }
     }
 };
 
 document.getElementById("ingresar").onclick = () => {
-    let cantidad = parseInt(prompt("¿Cuántas monedas deseas ingresar?"));
+    let cantidad = 0;
+    if(lng=="es") {
+        cantidad = parseInt(prompt("¿Cuántas monedas deseas ingresar?"));
+     } else if(lng=="en") {
+        cantidad = parseInt(prompt("How many coins would you like to insert?"));
+     }
+   //  console.log("Cantidad: " + cantidad);
     if (!isNaN(cantidad) && cantidad > 0) {
         saldo += cantidad;
         saldoSpan.innerText = saldo;
@@ -121,7 +138,11 @@ document.getElementById("ingresar").onclick = () => {
 };
 
 document.getElementById("retirar").onclick = () => {
-    alert("Has retirado " + saldo + " monedas.\n¡Gracias por jugar!");
+    if(lng=="es") { 
+        alert("Has retirado " + saldo + " monedas.\n¡Gracias por jugar!");
+    } else if(lng=="en") {
+        alert("You have withdrawn " + saldo + " coins.\nThanks for playing!");
+    }
     saldo = 0;
     saldoSpan.innerText = saldo;
     if (sonidoActivo) sonidoIngreso.play();
