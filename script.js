@@ -96,6 +96,8 @@ document.getElementById("girar").onclick = () => {
     }
 };
 
+let intervalos = {}; 
+
 function spinSlots() {
     const reels = [
         document.getElementById("slot1"),
@@ -103,8 +105,13 @@ function spinSlots() {
         document.getElementById("slot3")
     ];
 
-    reels.forEach(reel => {
+    reels.forEach((reel, index) => {
         reel.classList.add("spin-animation");
+
+        intervalos[reel.id] = setInterval(() => {
+            const randomSymbol = simbolos[Math.floor(Math.random() * simbolos.length)];
+            reel.src = randomSymbol;
+        }, 70);
     });
 
     setTimeout(() => stopReel(reels[0]), 800);
@@ -114,6 +121,8 @@ function spinSlots() {
 
 function stopReel(reel) {
     reel.classList.remove("spin-animation");
+
+    clearInterval(intervalos[reel.id]);
 
     const simboloRNG = simbolos[Math.floor(Math.random() * simbolos.length)];
     reel.src = simboloRNG;
