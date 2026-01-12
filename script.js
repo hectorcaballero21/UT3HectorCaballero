@@ -81,46 +81,75 @@ idioma.addEventListener("change", function() {
 document.getElementById("girar").onclick = () => {
 
     if (saldo < 10) {
-        mensaje.innerText = "No dispones de suficiente saldo.";
-        return;
-    }
-
-    saldo -= 10;
+        if(lng=="es") {
+        mensaje.innerText ="No tienes suficientes monedas"
+     } else if(lng=="en") {
+        mensaje.innerText ="Not enough coins to spin"
+     }
+    } else {
+        saldo -= 10;
     saldoSpan.innerText = saldo;
 
     if (sonidoActivo) sonidoGiro.play();
 
-    const s1 = simbolos[Math.floor(Math.random() * 5)];
-    const s2 = simbolos[Math.floor(Math.random() * 5)];
-    const s3 = simbolos[Math.floor(Math.random() * 5)];
+    spinSlots(); 
+    }
+};
 
-    slot1.src = s1;
-    slot2.src = s2;
-    slot3.src = s3;
+function spinSlots() {
+    const reels = [
+        document.getElementById("slot1"),
+        document.getElementById("slot2"),
+        document.getElementById("slot3")
+    ];
+
+    reels.forEach(reel => {
+        reel.classList.add("spin-animation");
+    });
+
+    setTimeout(() => stopReel(reels[0]), 800);
+    setTimeout(() => stopReel(reels[1]), 1100);
+    setTimeout(() => stopReel(reels[2]), 1400);
+}
+
+function stopReel(reel) {
+    reel.classList.remove("spin-animation");
+
+    const simboloRNG = simbolos[Math.floor(Math.random() * simbolos.length)];
+    reel.src = simboloRNG;
+
+    if (reel.id === "slot3") evaluarResultado();
+}
+
+function evaluarResultado() {
+    const s1 = slot1.src.split("/").pop().split(".")[0];
+    const s2 = slot2.src.split("/").pop().split(".")[0];
+    const s3 = slot3.src.split("/").pop().split(".")[0];
 
     if (s1 === s2 && s2 === s3) {
-        const nombre = s1.split("/")[1].split(".")[0];
-        const premio = pagos[nombre];
+        const premio = pagos[s1]; 
 
         saldo += premio;
         saldoSpan.innerText = saldo;
 
-        if(lng=="es") {
+        if (lng == "es") {
             mensaje.innerText = "¡Ganaste " + premio + " monedas!";
-        } else if(lng=="en") {
+        } else {
             mensaje.innerText = "You Win " + premio + " coins!";
         }
-        
+
         if (sonidoActivo) sonidoPremio.play();
 
     } else {
-        if(lng=="es") {
+        if (lng == "es") {
             mensaje.innerText = "Sin premio...";
-        } else if(lng=="en") {
+        } else {
             mensaje.innerText = "No prize...";
         }
     }
-};
+}
+
+
 
 document.getElementById("ingresar").onclick = () => {
     let cantidad = 0;
@@ -147,6 +176,7 @@ document.getElementById("retirar").onclick = () => {
     saldoSpan.innerText = saldo;
     if (sonidoActivo) sonidoIngreso.play();
 };
+
 
 document.getElementById("sonidoBtn").onclick = () => {
     sonidoActivo = !sonidoActivo;

@@ -83,3 +83,12 @@
 .tabla h2 {
     font-size: 28px;
 }
+
+.spin-animation {
+    animation: spin 0.1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
