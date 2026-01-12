@@ -25,6 +25,56 @@ const mensaje = document.getElementById("mensaje");
 const sonidoGiro = document.getElementById("sonidoGiro");
 const sonidoPremio = document.getElementById("sonidoPremio");
 const sonidoIngreso = document.getElementById("sonidoIngreso");
+const idioma = document.getElementById("idioma");
+const idi = document.getElementById("idi");
+const s = document.getElementById("s");
+const pt = document.getElementById("pt");
+const divSaldo = document.querySelector('.saldo');
+const girar = document.getElementById("girar");
+const ingresar = document.getElementById("ingresar");
+const retirar = document.getElementById("retirar");
+const cer = document.getElementById("cer");
+const dia = document.getElementById("dia");
+const fre = document.getElementById("fre");
+const pla = document.getElementById("pla");
+const uva = document.getElementById("uva");
+
+idioma.addEventListener("change", function() {
+    console.log("Idioma seleccionado:", this.value);
+    let i = idioma.options[idioma.selectedIndex].text;
+        i = idioma.value;
+        console.log(i);
+        if(i=="en") {
+            idi.innerText ="Language";
+            s.innerText ="Sound";
+            pt.innerText ="Payment Table";
+            divSaldo.childNodes[0].textContent = "Money: ";
+            divSaldo.childNodes[2].textContent = " Coins";
+            girar.innerText ="Spin (10 Coins)";
+            ingresar.innerText ="+ Add Coins";
+            retirar.innerText ="- Take Coins";
+            cer.innerText ="3 CHERRIES → 20 Coins";
+            dia.innerText ="3 DIAMONDS → 100 Coins";
+            fre.innerText ="3 STRAWBERRIES → 30 Coins";
+            pla.innerText ="3 BANANAS → 50 Coins";
+            uva.innerText ="3 GRAPES → 10 Coins";
+        } else if(i=="es") {
+            idi.innerText ="Idioma";
+            s.innerText ="Sonido";
+            pt.innerText ="Tabla de Pagos";
+            divSaldo.childNodes[0].textContent = "Saldo: ";
+            divSaldo.childNodes[2].textContent = " monedas";
+            girar.innerText ="Girar (10 monedas)";
+            ingresar.innerText ="+ Ingresar saldo";
+            retirar.innerText ="- Retirar saldo";
+            cer.innerText ="3 CEREZAS → 20 monedas";
+            dia.innerText ="3 DIAMANTES → 100 monedas";
+            fre.innerText ="3 FRESAS → 30 monedas";
+            pla.innerText ="3 PLÁTANOS → 50 monedas";
+            uva.innerText ="3 UVAS → 10 monedas";
+        }
+
+});
 
 document.getElementById("girar").onclick = () => {
 
@@ -53,11 +103,11 @@ document.getElementById("girar").onclick = () => {
         saldo += premio;
         saldoSpan.innerText = saldo;
 
-        mensaje.innerText = "🎉 ¡Ganaste " + premio + " monedas!";
+        mensaje.innerText = "¡Ganaste " + premio + " monedas!";
         if (sonidoActivo) sonidoPremio.play();
 
     } else {
-        mensaje.innerText = "😢 Sin premio...";
+        mensaje.innerText = "Sin premio...";
     }
 };
 
@@ -79,8 +129,9 @@ document.getElementById("retirar").onclick = () => {
 
 document.getElementById("sonidoBtn").onclick = () => {
     sonidoActivo = !sonidoActivo;
-    document.getElementById("sonidoBtn").innerText = sonidoActivo ? "🔊 ON" : "🔇 OFF";
+    document.getElementById("sonidoBtn").innerText = sonidoActivo ? "ON 🔊" : "OFF 🔇";
 };
+
 
 setInterval(() => {
     const ahora = new Date();
