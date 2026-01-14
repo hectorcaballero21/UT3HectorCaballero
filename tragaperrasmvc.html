@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FruitSlots</title>
+    <link rel="stylesheet" href="tragaperras.css">
+</head>
+<body>
+
+    <div class="fondo"></div>
+
+    <div class="contenedor">
+
+        <img src="img/logo.png" class="logo" alt="Logo FruitSlots">
+
+        <h1 class="titulo">FruitSlots</h1>
+
+        <div class="panel-superior">
+            <div class="i">
+                <label id="idi">Idioma:</label>
+                <select id="idioma">
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                </select>
+            </div>
+
+            <div>
+                <label id="s">Sonido:</label>
+                <button id="sonidoBtn">ON 🔊</button>
+            </div>
+
+            <div id="fechaHora"></div>
+        </div>
+
+        <div class="slots">
+            <img id="slot1" src="img/cereza.png" class="slot">
+            <img id="slot2" src="img/cereza.png" class="slot">
+            <img id="slot3" src="img/cereza.png" class="slot">
+        </div>
+
+        <div class="saldo">Saldo: <span id="saldo">100</span> monedas</div>
+
+        <div id="mensaje" class="mensaje"></div>
+
+        <div class="botones">
+            <button id="girar">Girar (10 monedas)</button>
+            <button id="ingresar">+ Ingresar saldo</button>
+            <button id="retirar">- Retirar saldo</button>
+        </div>
+
+        <div class="tabla">
+            <h2 id="pt">Tabla de Pagos</h2>
+            <p id="cer">3 CEREZAS → 20 monedas</p>
+            <p id="dia">3 DIAMANTES → 100 monedas</p>
+            <p id="fre">3 FRESAS → 30 monedas</p>
+            <p id="pla">3 PLÁTANOS → 50 monedas</p>
+            <p id="uva">3 UVAS → 10 monedas</p>
+        </div>
+
+    </div>
+    <p> </p> <!--solo es para añadir separación entre el footer y la tabla de pagos, lo pongo por si es un poco raro-->
+
+    <footer>
+        <div class="prot"> 
+            <a href="info.html" class="t" id="protext">Protección de datos</a> 
+            <img src="img/advise.png" id="adv">
+        </div>
+        <div class="mid">
+            <img src="img/logo.png" id="log" width="100" height="100">
+        </div>
+        <div class="foot">
+            <span class="txtspo" id="spo">Un juego de la marca</span>
+            <img src="img/sportiumlogo.png" id="spo" width="100" height="50">
+        </div>
+    </footer>
+
+    <audio id="sonidoGiro" src="audio/giro.mp3"></audio>
+    <audio id="sonidoPremio" src="audio/premio.mp3"></audio>
+    <audio id="sonidoIngreso" src="audio/ingreso.mp3"></audio>
+
+    <script src="modelo/modelo.js"></script>
+    <script src="vista/vista.js"></script>
+    <script src="controlador/controlador.js"></script> 
+
+</body>
+</html>
