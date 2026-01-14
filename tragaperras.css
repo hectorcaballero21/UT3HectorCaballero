@@ -15,6 +15,14 @@
     font-family: Arial, sans-serif;
 }
 
+#fechaHora {
+    background-color: black;
+}
+
+.i {
+    background-color: black;
+}
+
 .logo {
     width: 180px;
 }
@@ -87,6 +95,45 @@
 .spin-animation {
     animation: spin 0.1s linear infinite;
 }
+
+footer {
+    width: 96%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 22px;
+    position: relative;
+}
+
+.prot {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.prot a.t {
+    color: white;
+    text-decoration: none;
+}
+
+.prot a.t:hover {
+    text-decoration: underline;
+    color: yellow
+}
+
+.foot {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.txtspo {
+    color: white;
+}
+
 
 @keyframes spin {
     0% { transform: translateY(0); }
