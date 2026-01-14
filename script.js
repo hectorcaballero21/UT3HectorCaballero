@@ -87,10 +87,15 @@ document.getElementById("girar").onclick = () => {
         mensaje.innerText ="Not enough coins to spin"
      }
     } else {
+        girar.disabled = true;
         saldo -= 10;
-    saldoSpan.innerText = saldo;
+        saldoSpan.innerText = saldo;
 
-    if (sonidoActivo) sonidoGiro.play();
+        if (sonidoActivo) sonidoGiro.play();
+
+        setTimeout(() => {
+            girar.disabled = false;
+        }, 5000);
 
     spinSlots(); 
     }

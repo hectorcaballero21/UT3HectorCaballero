@@ -124,6 +124,12 @@ footer {
     color: yellow
 }
 
+.mid {
+    display:flex;
+    align-items: center;
+    padding-right: 10%;
+}
+
 .foot {
     display: flex;
     align-items: center;
