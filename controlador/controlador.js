@@ -2,34 +2,13 @@ actualizarSaldo();
 
 idiomaSelect.addEventListener("change", actualizarIdioma);
 
-girarBtn.onclick = () => {
+/*const carrete1 = new Carrete("slot1", obtenerSimboloRandom);
+const carrete2 = new Carrete("slot2", obtenerSimboloRandom);
+const carrete3 = new Carrete("slot3", obtenerSimboloRandom); */
 
-    if (saldo < 10) {
-        if (saldo < 10) {
-        if(lng=="es") {
-        mostrarMensaje("No tienes suficientes monedas");
-        return
-     } else if(lng=="en") {
-        mostrarMensaje("Not enough coins to spin");
-        return
-     }
-    }
-    }
-
-    restarSaldo(10);
-    actualizarSaldo();
-
-    bloquearGiro();
-    reproducirSonido(sonidoGiro);
-
-    iniciarAnimacion(slot1);
-    iniciarAnimacion(slot2);
-    iniciarAnimacion(slot3);
-    setTimeout(() => detenerSlot(slot1), 800);
-    setTimeout(() => detenerSlot(slot2), 1100);
-    setTimeout(() => detenerSlot(slot3), 1400);
-    setTimeout(desbloquearGiro, 5000);
-};
+girarBtn.onclick = () => { 
+    tirar();
+}
 
 function detenerSlot(slot) {
     detenerAnimacion(slot);

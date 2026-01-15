@@ -14,6 +14,61 @@ const pagos = {
     "uva": 10
 };
 
+class Carrete {
+    constructor(idSlot, obtenerSimboloRandom) {
+        this.slot = document.getElementById(idSlot);
+        this.obtenerSimboloRandom = obtenerSimboloRandom;
+        this.intervalo = null;
+    }
+
+    iniciar() {
+        this.slot.classList.add("spin-animation");
+        this.intervalo = setInterval(() => {
+            this.slot.src = this.obtenerSimboloRandom();
+        }, 70);
+    }
+
+    detener(metodo) {
+        this.slot.classList.remove("spin-animation");
+        clearInterval(this.intervalo);
+
+        const finalSymbol = this.obtenerSimboloRandom();
+        this.slot.src = finalSymbol;
+
+        if (metodo) metodo();
+    }
+}
+
+function tirar() {
+    
+    if (saldo < 10) {
+        mostrarMensaje(lng=="es" ? "No tienes suficientes monedas" : "Not enough coins to spin");
+        return;
+    }
+
+    const carrete1 = new Carrete("slot1", obtenerSimboloRandom);
+    const carrete2 = new Carrete("slot2", obtenerSimboloRandom);
+    const carrete3 = new Carrete("slot3", obtenerSimboloRandom);
+
+    restarSaldo(10);
+    actualizarSaldo();
+
+    bloquearGiro();
+    reproducirSonido(sonidoGiro);
+
+    carrete1.iniciar();
+    carrete2.iniciar();
+    carrete3.iniciar();
+
+    setTimeout(() => carrete1.detener(), 800);
+    setTimeout(() => carrete2.detener(), 1100);
+    setTimeout(() => carrete3.detener(comprobarResultado), 1400);
+
+    setTimeout(desbloquearGiro, 5000);
+
+}
+
+
 let saldo = 100;
 let sonidoActivo = true;
 let lng = "es";
