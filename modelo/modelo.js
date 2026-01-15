@@ -14,6 +14,32 @@ const pagos = {
     "uva": 10
 };
 
+class Carrete {
+    constructor(idSlot, obtenerSimboloRandom) {
+        this.slot = document.getElementById(idSlot);
+        this.obtenerSimboloRandom = obtenerSimboloRandom;
+        this.intervalo = null;
+    }
+
+    iniciar() {
+        this.slot.classList.add("spin-animation");
+        this.intervalo = setInterval(() => {
+            this.slot.src = this.obtenerSimboloRandom();
+        }, 70);
+    }
+
+    detener(callbackFinal) {
+        this.slot.classList.remove("spin-animation");
+        clearInterval(this.intervalo);
+
+        const finalSymbol = this.obtenerSimboloRandom();
+        this.slot.src = finalSymbol;
+
+        if (callbackFinal) callbackFinal();
+    }
+}
+
+
 let saldo = 100;
 let sonidoActivo = true;
 let lng = "es";
